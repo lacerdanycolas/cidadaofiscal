@@ -1,0 +1,55 @@
+﻿{
+  "deputados": [
+    {
+      "nome":"Everaldo Cabral",
+      "media": "180247.90",
+      "total":"540743.70"
+		
+    },
+    {
+      "nome":"Ricardo Costa",
+      "media": "15392.69",
+      "total":"538744.14"
+    },
+    {
+      "nome":"João Eudes",
+      "media": "15315.46",
+      "total":"536041.11"
+    },
+    {
+      "nome":"Joel da Harpa",
+      "media": "15278.84",
+      "total":"534759.26"
+    },
+    {
+      "nome":"Julio Cavalcanti",
+      "media": "15272.30",
+      "total":"534530.49"
+    },
+    {
+      "nome":"Romário Dias",
+      "media": "15156.27",
+      "total":"530469.41"
+    },
+    {
+      "nome":"Pedro Serafim Neto",
+      "media": "15155.91",
+      "total":"530456.81"
+    },
+    {
+      "nome":"Francismar Pontes",
+      "media": "132050.82",
+      "total":"528203.29"
+    },
+    {
+      "nome":"Henrique Queiroz",
+      "media": "17600.00",
+      "total":"528000.00"
+    },
+    {
+      "nome":"Marcanônio Dourado",
+      "media": "15066.96",
+      "total":"527343.59"
+    }			
+  ]
+}

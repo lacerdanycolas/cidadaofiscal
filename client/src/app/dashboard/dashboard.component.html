@@ -42,11 +42,11 @@
 			<p>Este é um projeto voluntário feito por pessoas que acreditam que <strong>É POSSÍVEL</strong> mudar o país com uma participação saudável na política.</p>
 		</div>
 	</div>
-      
+
     </div>
   </ng-template>
 </div>
-</ngb-carousel>  
+</ngb-carousel>
 
 <div class="container">
 <!-- Summary Section -->
@@ -62,24 +62,26 @@
 		  </div>
         </h4>
         <ngx-datatable class="bootstrap"
-        [rows]="summaryMemberRows"
+        #myTable
+        [rows]="rowsDep"
+        [columns]="columnsDep"
         [columnMode]="'flex'"
         [headerHeight]="40"
         [footerHeight]="40"
         [limit]="5"
         [rowHeight]="'46'"
         [messages]="{emptyMessage:'Sem dados para exibir',totalMessage:'(total)'}">
-          <ngx-datatable-column prop="memberPoliticalName" name="Deputado(a)" [flexGrow]="3">
+          <ngx-datatable-column prop="nome" name="Deputado(a)" [flexGrow]="3">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span [ngbTooltip]="row.memberName" container="body">{{value}}</span>
+                <span [ngbTooltip]="row.nome" container="body">{{value}}</span>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="monthAverageExpenses" name="Média Mensal" [flexGrow]="2">
+          <ngx-datatable-column prop="media" name="Média Mensal" [flexGrow]="2">
             <ng-template let-value="value" ngx-datatable-cell-template>
                 {{value | currency:"R$"}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="monthSumExpenses" name="Total" [flexGrow]="2">
+          <ngx-datatable-column prop="total" name="Total" [flexGrow]="2">
             <ng-template let-value="value" ngx-datatable-cell-template>
                 {{value | currency:"R$"}}
             </ng-template>

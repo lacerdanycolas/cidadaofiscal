@@ -1,7 +1,7 @@
 import { SummaryExpensesYearService } from './../summary-expenses-year.service';
 import { SummarySupplierService } from './../summary-supplier.service';
 import { SummaryMemberService } from './../summary-member.service';
-import { Component, OnInit, group } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +14,27 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  @ViewChild('myTable') table: any;
+
+  rowsDep = [];
+  columnsDep = [
+    {
+      prop: 'name',
+      name: 'name',
+
+    },
+    {
+      prop:'media',
+      name:'media'
+    },
+    {
+      prop : 'total',
+      name: 'total'
+    },
+  ]
+
+
   summaryMemberRows = [];
   summarySupplierRows = [];
   summaryExpesesYearRows = [];
@@ -23,7 +44,13 @@ export class DashboardComponent implements OnInit {
     private summaryMemberService: SummaryMemberService,
     private summarySupplierService: SummarySupplierService,
     private summaryExpensesYearService: SummaryExpensesYearService
+
   ) {
+
+    this.fetchDeputados((data) => {
+      this.rowsDep = data;
+    });
+
     // customize default values of carousels used by this component tree
     config.interval = 10000;
     config.wrap = false;
@@ -33,6 +60,22 @@ export class DashboardComponent implements OnInit {
     this.loadMemberSummary();
     this.loadSupplierSummary();
     this.loadYearExpensesSummary();
+
+    this.columnsDep = [
+      {
+        prop: 'name',
+        name: 'name',
+
+      },
+      {
+        prop:'media',
+        name: 'media'
+      },
+      {
+        prop : 'total',
+        name: 'total'
+      },
+    ];
   }
 
   loadMemberSummary(): void {
@@ -45,5 +88,16 @@ export class DashboardComponent implements OnInit {
 
   loadYearExpensesSummary(): void {
     this.summaryExpensesYearService.getSummaryExpensesYear().subscribe(res => this.summaryExpesesYearRows = res.data);
+  }
+
+  fetchDeputados(cb) {
+    const req = new XMLHttpRequest();
+    req.open('GET', `http://localhost:3000/deputados`);
+
+    req.onload = () => {
+      cb(JSON.parse(req.response));
+    };
+
+    req.send();
   }
 }

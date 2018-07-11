@@ -1,0 +1,15 @@
+{
+  "deputados": [
+    {
+      "nome":"Everaldo Cabral",
+      "media": "R$ 180.247,90",
+      "total":"R$ 540.743,70"
+		
+    },
+    {
+      "nome":"Ricardo Costa",
+      "media": "R$ 15.392,69",
+      "total":"R$ 538.744,14"
+    }
+  ]
+}
