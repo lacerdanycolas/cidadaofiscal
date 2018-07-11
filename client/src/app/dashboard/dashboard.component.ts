@@ -35,6 +35,23 @@ export class DashboardComponent implements OnInit {
   ]
 
 
+  rowsForn = [];
+  columnsForn = [
+    {
+        prop:'nomeFornecedor',
+        name:'nomeFornecedor'
+    },
+    {
+        prop: 'totalRecebido',
+        name:'totalRecebido'
+    },
+    {
+        prop:'qtdDept',
+        name:'qtdDept'
+    }
+  ]
+
+
   summaryMemberRows = [];
   summarySupplierRows = [];
   summaryExpesesYearRows = [];
@@ -49,6 +66,10 @@ export class DashboardComponent implements OnInit {
 
     this.fetchDeputados((data) => {
       this.rowsDep = data;
+    });
+
+    this.fetchFornecedores((data) => {
+      this.rowsForn = data;
     });
 
     // customize default values of carousels used by this component tree
@@ -76,6 +97,21 @@ export class DashboardComponent implements OnInit {
         name: 'total'
       },
     ];
+    this.columnsForn = [
+      {
+        prop:'nomeFornecedor',
+        name:'nomeFornecedor'
+      },
+      {
+        prop: 'totalRecebido',
+        name:'totalRecebido'
+      },
+      {
+        prop:'qtdDept',
+        name:'qtdDept'
+      }
+    ];
+
   }
 
   loadMemberSummary(): void {
@@ -93,6 +129,17 @@ export class DashboardComponent implements OnInit {
   fetchDeputados(cb) {
     const req = new XMLHttpRequest();
     req.open('GET', `http://localhost:3000/deputados`);
+
+    req.onload = () => {
+      cb(JSON.parse(req.response));
+    };
+
+    req.send();
+  }
+
+  fetchFornecedores(cb) {
+    const req = new XMLHttpRequest();
+    req.open('GET', `http://localhost:4000/fornecedores`);
 
     req.onload = () => {
       cb(JSON.parse(req.response));

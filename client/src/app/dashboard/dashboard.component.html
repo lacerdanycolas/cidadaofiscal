@@ -101,24 +101,25 @@
 		   </div>
         </h4>
         <ngx-datatable class="bootstrap"
-          [rows]="summarySupplierRows"
+          [rows]="rowsForn"
+          [columns]="columnsForn"
           [columnMode]="'flex'"
           [headerHeight]="40"
           [footerHeight]="40"
           [limit]="5"
           [rowHeight]="'46'"
           [messages]="{emptyMessage:'Sem dados para exibir',totalMessage:'(total)'}">
-          <ngx-datatable-column prop="supplierName" name="Fornecedor" [flexGrow]="2">
+          <ngx-datatable-column prop="nomeFornecedor" name="Fornecedor" [flexGrow]="2">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                  <span [ngbTooltip]="row.supplierId" container="body">{{value}}</span>
+                  <span [ngbTooltip]="row.nomeFornecedor" container="body">{{value}}</span>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column prop="sumExpenses" name="Total Recebido" [flexGrow]="1">
+            <ngx-datatable-column prop="totalRecebido" name="Total Recebido" [flexGrow]="1">
               <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value | currency:"R$"}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column prop="memberCount" name="Qtd. Deputados" [flexGrow]="1">
+            <ngx-datatable-column prop="qtdDept" name="Qtd. Deputados" [flexGrow]="1">
               <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
               </ng-template>

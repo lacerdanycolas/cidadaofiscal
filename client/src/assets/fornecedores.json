@@ -1,0 +1,64 @@
+﻿{
+  "fornecedores": [
+    {
+      "nomeFornecedor":"Barreto Santos Ltda",
+      "totalRecebido": "1764898.03",
+      "qtdDept":"13"
+		
+    },
+    {
+      "nomeFornecedor":"LOPES & CONSULTORES ASSOCIADOS",
+      "totalRecebido": "818038.49",
+      "qtdDept":"8"
+		
+    },
+    {
+      "nomeFornecedor":"RW Produções",
+      "totalRecebido": "797635.47",
+      "qtdDept":"5"
+		
+    },
+    {
+      "nomeFornecedor":"Agil Serviços de Embalagens",
+      "totalRecebido": "678452.41",
+      "qtdDept":"4"
+		
+    },
+    {
+      "nomeFornecedor":"S e Silva Entregas Rápidas LTDA - ME",
+      "totalRecebido": "624797.41",
+      "qtdDept":"4"
+		
+    },
+    {
+      "nomeFornecedor":"Morais e Carneiro Leão Advogados",
+      "totalRecebido": "587666.15",
+      "qtdDept":"5"
+		
+    },
+    {
+      "nomeFornecedor":"W J C Fernandes Junior Locação de Automoveis Ltda - ME",
+      "totalRecebido": "552375.00",
+      "qtdDept":"3"
+		
+    },
+    {
+      "nomeFornecedor":"Beltrão & Assunção Crusos, Assessoria e Qualificação Profissional",
+      "totalRecebido": "385774.04",
+      "qtdDept":"5"
+		
+    },
+    {
+      "nomeFornecedor":"Mello Medeiros Locações de Veículo Ltda",
+      "totalRecebido": "337311.95",
+      "qtdDept":"2"
+		
+    },
+    {
+      "nomeFornecedor":"Emilio Duarde Advocacia Plena",
+      "totalRecebido": "356134.91",
+      "qtdDept":"3"
+		
+    }					
+  ]
+}
