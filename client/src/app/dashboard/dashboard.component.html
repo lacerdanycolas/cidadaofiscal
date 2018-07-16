@@ -144,16 +144,17 @@
 			</div>
           </h4>
           <ngx-datatable class="bootstrap"
-            [rows]="summaryExpesesYearRows"
+            [rows]="rowsDespesa"
+            [columns]="columnsDespesa"
             [columnMode]="'flex'"
             [headerHeight]="40"
             [footerHeight]="40"
             [limit]="3"
             [rowHeight]="'46'"
             [messages]="{emptyMessage:'Sem dados para exibir',totalMessage:'(total)'}">
-              <ngx-datatable-column prop="expenseType" name="Tipo de Despesa" [flexGrow]="3">
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                    <span [ngbTooltip]="value | expenseType" container="body">{{value | expenseType}}</span>
+              <ngx-datatable-column prop="tipo" name="Tipo de Despesa" [flexGrow]="3">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span [ngbTooltip]="row.tipo" container="body">{{value}}</span>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column prop="y2015" name="2015" [flexGrow]="2">
@@ -171,7 +172,7 @@
                     {{value | currency:"R$"}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column prop="total" name="Total" [flexGrow]="2">
+              <ngx-datatable-column prop="totalDespesas" name="Total" [flexGrow]="2">
                 <ng-template let-value="value"  ngx-datatable-cell-template>
                     {{value | currency:"R$"}}
                 </ng-template>

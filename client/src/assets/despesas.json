@@ -1,0 +1,46 @@
+﻿{
+  "despesas": [
+    {
+      "tipo":["Hospedagens","Passagens","Locação de Transportes"],
+     "y2015":"1935043.54",
+     "y2016":"2095248.54",
+      "y2017":"1989354.38",
+     "totalDespesas":"6019646.46"
+    },
+      {
+      "tipo":["Consultoria","Assessoria","Pesquisa de Trabalhos Técnicos"],
+     "y2015":"1814541.58",
+     "y2016":"2218669.31",
+      "y2017":"1870929.80",
+     "totalDespesas":"5904140.69"
+    },
+    {
+      "tipo":["Divulgação de Atividade Parlamentar"],
+     "y2015":"773728.94",
+     "y2016":"337106.22",
+      "y2017":"784439.24",
+     "totalDespesas":"1895274.40"
+    },
+    {
+      "tipo":["Aquis./Loc. de Software","Tv a Cabo","Internet","Manut. de Site"],
+     "y2015":"508763.12",
+     "y2016":"665530.58",
+      "y2017":"631729.15",
+      "totalDespesas":"1806022.85"
+    },
+    {
+      "tipo":["Serviços Gráficos (Edição de Jornais, Revistas, etc)"],
+     "y2015":"542415.47",
+     "y2016":"548657.08",
+      "y2017":"447484.88",
+      "totalDespesas":"1538557.43"
+    },
+    {
+      "tipo":["Locação de Imóveis"],
+     "y2015":"463567.60",
+     "y2016":"505047.25",
+      "y2017":"547292.34",
+      "totalDespesas":"1515907.19"
+    }
+  ]
+}
