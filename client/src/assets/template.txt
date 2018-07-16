@@ -1,0 +1,10 @@
+{
+  "fornecedores": [
+    {
+      "nomeFornecedor":"Barreto Santos Ltda",
+      "totalRecebido": "1764898.03",
+      "qtdDept":"13"
+		
+    }
+  ]
+}
