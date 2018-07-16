@@ -1,0 +1,88 @@
+<div class="top-interna">
+	<div class="container">
+	</div>
+	<div class="title-page">
+		<div class="container">
+			<h4>Voluntários</h4>
+			<span></span>
+		</div>
+	</div>
+</div>
+<script>
+$( document ).ready(function() {
+	$('.search-button-toggle').click(function(){
+		$('.container-search').hide();
+	});
+});
+
+</script>
+<div class="container detail-container" style="margin-top:0px;">
+    <div class="card result-card">
+        <div class="col-md-12 text-center"><a href="javascript:void(0);" class="search-button-toggle"><img src="../assets/img/icon4.png" /><h4>Voluntários <i class="fas fa-caret-down"></i></h4></a></div>
+        <h4>O Cidadão Fiscal apresenta informações públicas em forma organizada
+        para facilitar o entendimento por parte de todos os cidadãos. Todo o projeto
+        foi desenvolvido por cidadãos como você, usando um pouco do tempo
+        tão concorrido de nossos dias. Junte-se a nós como voluntário
+        e ajude a fazer ainda mais! </h4>
+      <div class="card-body">
+        <h4 class="card-title">
+		  <img src="./assets/img/icon4.png" />
+		  <div>
+			  Voluntários
+			  <span>Conheça um pouco mais dos nossos voluntários</span>
+		  </div>
+        </h4>
+        <ngx-datatable class="bootstrap"
+        #myTable
+        [rows]="rowsVol"
+        [columns]="columnsVol"
+        [columnMode]="'flex'"
+        [headerHeight]="40"
+        [footerHeight]="40"
+        [limit]="10"
+        [rowHeight]="'46'"
+        [messages]="{emptyMessage:'Sem dados para exibir',totalMessage:'no total'}">>
+          <ngx-datatable-column prop="nomeVoluntario" name="Voluntário(a)"  [flexGrow]="4">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span [ngbTooltip]="row.nomeVoluntario" container="body">{{value}}</span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="email" name="Email" [flexGrow]="6">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                <span [ngbTooltip]="value" container="body">{{value}}</span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="telefone" name="Telefone" [flexGrow]="4">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span [ngbTooltip]="value" container="body">{{value}}</span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="estado" name="Estado" [flexGrow]="3">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <span [ngbTooltip]="value" container="body">{{value}}</span>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  <div class="col-lg-12 col-md-12">
+  <div class="row -two-col-xs container-sobre">
+	<div class="col-lg-6 col-md-6 text-center">
+		<img src="./assets/img/logo-g.png" />
+		<a class="btn btn-lg btn-secondary btn-block" href="#" routerLink="/about">Seja um Volutário</a>
+	</div>
+	<div class="col-lg-6 col-md-6">
+    <h2>Entenda o <span>Projeto</span></h2>
+    <p>O CidadãoFiscal apresenta informações públicas em forma organizada para facilitar o entendimento por parte de todos os cidadãos.</p>
+    <ul>
+      <li>
+        Projeto voluntário
+      </li>
+      <li>Sem vínculo partidário</li>
+      <li>Aberto a sugestões e novos colaboradores</li>
+    </ul>
+    <p>Os dados de vérbas indenizatórias da ALEPE (Assembléia Legislativa de Pernambuco) foram escolhidos para o primeiro trabalho do Cidadão Fiscal pro permitirem uma análise direta da população sobre como seus eleitos mais próximos estão utilizando o dinheiro público.</p>
+	</div>
+  </div>
+  </div>
+</div>
