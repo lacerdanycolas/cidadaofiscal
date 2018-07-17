@@ -64,6 +64,7 @@ export class AboutComponent implements OnInit {
       (dominio.indexOf(".") >=1)&&
       (dominio.lastIndexOf(".") < dominio.length - 1)) {
       bol = false;
+      this.status = bol;
     }else{
         bol = true;
         this.status=bol;
@@ -74,7 +75,7 @@ export class AboutComponent implements OnInit {
   }
 
   sendVol(){
-
+    debugger
     if(!this.validatefields()) {
       var vol = this.volunteer;
       var json = JSON.stringify(vol);
