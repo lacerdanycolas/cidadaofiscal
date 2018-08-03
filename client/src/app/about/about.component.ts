@@ -40,7 +40,7 @@ export class AboutComponent implements OnInit {
 
   validatefields(){
 
-    
+
     var volaux = this.volunteer;
     if(volaux.nomeVoluntario == "" || volaux.email == "" ||
       volaux.estado == "" || volaux.causa == ""
