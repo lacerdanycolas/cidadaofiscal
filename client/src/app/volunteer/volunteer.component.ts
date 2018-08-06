@@ -39,7 +39,7 @@ export class VolunteerComponent implements OnInit {
   ngOnInit() {
     this.columnsVol = [
       {
-        prop: 'name',
+        prop: 'nomeVoluntario',
         name: 'nomeVoluntario'
       },
       {
