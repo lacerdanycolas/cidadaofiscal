@@ -13,6 +13,7 @@ import com.example.cidadaofiscal.beans.CfAlepe;
 import com.example.cidadaofiscal.beans.DeputadoDTO;
 import com.example.cidadaofiscal.beans.DespesaDTO;
 import com.example.cidadaofiscal.beans.FornecedorDTO;
+import com.example.cidadaofiscal.beans.PesquisaDTO;
 import com.example.cidadaofiscal.service.CfAlepeService;
 
 @RestController
@@ -48,5 +49,8 @@ public class CfAlepeController {
 		return cfAlepeService.getFornecedoresView();
 	}
 	
-
+	@GetMapping(path = "/pesquisa")
+	public List<PesquisaDTO> getPesquisaResults(){
+		return cfAlepeService.getPesquisaResult();
+	}
 }

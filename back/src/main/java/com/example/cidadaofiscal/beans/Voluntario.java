@@ -30,6 +30,8 @@ public class Voluntario implements Serializable{
 	
 	private String estado;
 	
+	private String causa;
+
 	public Voluntario() {
 		
 	}
@@ -73,5 +75,12 @@ public class Voluntario implements Serializable{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	public String getCausa() {
+		return causa;
+	}
 
+	public void setCausa(String causa) {
+		this.causa = causa;
+	}
 }

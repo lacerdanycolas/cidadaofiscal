@@ -11,7 +11,7 @@ export class AboutComponent implements OnInit {
 
   volunteer = {
     id: '',
-    nomeVoluntario: '',
+    nome: '',
     email: '',
     telefone: '',
     estado: '',
@@ -28,7 +28,7 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
     this.volunteer = {
       id: '',
-      nomeVoluntario: '',
+      nome: '',
       email: '',
       telefone: '',
       estado: '',
@@ -42,11 +42,11 @@ export class AboutComponent implements OnInit {
 
 
     var volaux = this.volunteer;
-    if(volaux.nomeVoluntario == "" || volaux.email == "" ||
+    if(volaux.nome == "" || volaux.email == "" ||
       volaux.estado == "" || volaux.causa == ""
-      || volaux.nomeVoluntario == null || volaux.email == null ||
+      || volaux.nome == null || volaux.email == null ||
       volaux.estado == null || volaux.causa == null ||
-      volaux.nomeVoluntario == undefined || volaux.email == undefined ||
+      volaux.nome == undefined || volaux.email == undefined ||
       volaux.estado == undefined || volaux.causa == undefined){
       this.status = true;
     }
@@ -80,7 +80,7 @@ export class AboutComponent implements OnInit {
       var vol = this.volunteer;
       var json = JSON.stringify(vol);
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", 'http://localhost:5000/voluntarios/', true);
+      xhr.open("POST", 'http://localhost:8080/voluntario', true);
 
 
       xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');

@@ -109,5 +109,39 @@ public interface CfAlepeRepository extends JpaRepository<CfAlepe, Long>{
 	 		"        soma DESC", 
 	 		nativeQuery=true)
 	 		 List<Object[]> getFornecedoresView();
+	 		 
+	 		@Query(
+	 		value="SELECT\n" + 
+	 				"	parlamentar_fantasia, \n" + 
+	 				"	parlamentar_partido, \n" + 
+	 				"	parlamentar_nome,\n" + 
+	 				"	ordem_ano,\n" + 
+	 				"	ordem_mes,\n" + 
+	 				"    fornecedor_id,\n" + 
+	 				"    fornecedor_nome,\n" + 
+	 				"	despesa_tipo,\n" + 
+	 				"	despesa_valor,\n" + 
+	 				"	despesa_cancelada,\n" + 
+	 				"    despesa_data\n" + 
+	 				"FROM\n" + 
+	 				"    cidadaofiscal.cf_alepe\n" + 
+	 				"WHERE \n" + 
+	 				"parlamentar_fantasia IS NOT NULL \n" + 
+	 				"AND parlamentar_partido IS NOT NULL\n" + 
+	 				"AND parlamentar_nome IS NOT NULL\n" + 
+	 				"AND ordem_ano IS NOT NULL\n" + 
+	 				"AND ordem_mes IS NOT NULL\n" + 
+	 				"AND fornecedor_id IS NOT NULL\n" + 
+	 				"AND fornecedor_nome IS NOT NULL\n" + 
+	 				"AND despesa_tipo IS NOT NULL\n" + 
+	 				"AND despesa_valor IS NOT NULL\n" + 
+	 				"AND despesa_cancelada IS NOT NULL\n" + 
+	 				"AND despesa_data IS NOT NULL\n" + 
+	 				"ORDER BY despesa_data ASC\n" + 
+	 				"\n" + 
+	 				"\n" + 
+	 				"\n" + 
+	 				"", nativeQuery = true)
+	 				 List<Object[]> getPesquisaResults();
 	
 }
