@@ -20,7 +20,7 @@ public class VoluntarioService {
 	}
 	
 	public Voluntario findOne(Long id) {
-		return voluntarioRepository.getOne(id);
+		return voluntarioRepository.findById(id).get();
 	}
 	
 	public Voluntario save(Voluntario voluntario) {

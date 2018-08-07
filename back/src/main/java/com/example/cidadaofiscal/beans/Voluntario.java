@@ -1,7 +1,8 @@
 package com.example.cidadaofiscal.beans;
 
 
-import javax.persistence.Cacheable;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="voluntario")
-public class Voluntario{
+public class Voluntario implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7543914579079120015L;
+
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -23,6 +29,10 @@ public class Voluntario{
 	private String telefone;
 	
 	private String estado;
+	
+	public Voluntario() {
+		
+	}
 
 	public Long getId() {
 		return id;

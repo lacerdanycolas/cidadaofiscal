@@ -71,17 +71,17 @@
         [limit]="5"
         [rowHeight]="'46'"
         [messages]="{emptyMessage:'Sem dados para exibir',totalMessage:'(total)'}">
-          <ngx-datatable-column prop="nome" name="Deputado(a)" [flexGrow]="3">
+          <ngx-datatable-column prop="parlamentar_fantasia" name="Deputado(a)" [flexGrow]="3">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span [ngbTooltip]="row.nome" container="body">{{value}}</span>
+                <span [ngbTooltip]="row.parlamentar_fantasia" container="body">{{value}}</span>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="media" name="Média Mensal" [flexGrow]="2">
+          <ngx-datatable-column prop="despesa_media_mes" name="Média Mensal" [flexGrow]="2">
             <ng-template let-value="value" ngx-datatable-cell-template>
                 {{value | currency:"R$"}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="total" name="Total" [flexGrow]="2">
+          <ngx-datatable-column prop="soma" name="Total" [flexGrow]="2">
             <ng-template let-value="value" ngx-datatable-cell-template>
                 {{value | currency:"R$"}}
             </ng-template>
@@ -109,17 +109,17 @@
           [limit]="5"
           [rowHeight]="'46'"
           [messages]="{emptyMessage:'Sem dados para exibir',totalMessage:'(total)'}">
-          <ngx-datatable-column prop="nomeFornecedor" name="Fornecedor" [flexGrow]="2">
+          <ngx-datatable-column prop="fornecedor_nome" name="Fornecedor" [flexGrow]="2">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                  <span [ngbTooltip]="row.nomeFornecedor" container="body">{{value}}</span>
+                  <span [ngbTooltip]="row.fornecedor_nome" container="body">{{value}}</span>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column prop="totalRecebido" name="Total Recebido" [flexGrow]="1">
+            <ngx-datatable-column prop="soma" name="Total Recebido" [flexGrow]="1">
               <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value | currency:"R$"}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column prop="qtdDept" name="Qtd. Deputados" [flexGrow]="1">
+            <ngx-datatable-column prop="deputados_contador" name="Qtd. Deputados" [flexGrow]="1">
               <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
               </ng-template>
@@ -152,9 +152,9 @@
             [limit]="3"
             [rowHeight]="'46'"
             [messages]="{emptyMessage:'Sem dados para exibir',totalMessage:'(total)'}">
-              <ngx-datatable-column prop="tipo" name="Tipo de Despesa" [flexGrow]="3">
+              <ngx-datatable-column prop="despesa_tipo" name="Tipo de Despesa" [flexGrow]="3">
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                    <span [ngbTooltip]="row.tipo" container="body">{{value}}</span>
+                    <span [ngbTooltip]="row.despesa_tipo | expenseType" container="body">{{value | expenseType}}</span>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column prop="y2015" name="2015" [flexGrow]="2">
@@ -172,7 +172,7 @@
                     {{value | currency:"R$"}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column prop="totalDespesas" name="Total" [flexGrow]="2">
+              <ngx-datatable-column prop="total" name="Total" [flexGrow]="2">
                 <ng-template let-value="value"  ngx-datatable-cell-template>
                     {{value | currency:"R$"}}
                 </ng-template>

@@ -1,9 +1,9 @@
 package com.example.cidadaofiscal.api;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,18 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.cidadaofiscal.beans.CfAlepe;
 import com.example.cidadaofiscal.beans.DeputadoDTO;
-import com.example.cidadaofiscal.repository.CfAlepeRepository;
+import com.example.cidadaofiscal.beans.DespesaDTO;
+import com.example.cidadaofiscal.beans.FornecedorDTO;
 import com.example.cidadaofiscal.service.CfAlepeService;
 
 @RestController
 @RequestMapping("/alepe")
+@CrossOrigin
 public class CfAlepeController {
 	
 	@Autowired 
 	private CfAlepeService cfAlepeService;
-	
-	@Autowired
-	private CfAlepeRepository rep;
 	
 	@GetMapping
 	public List<CfAlepe> returnAll(){
@@ -35,20 +34,19 @@ public class CfAlepeController {
 	}
 	
 	@GetMapping(path = "/deputado")
-	public Collection<DeputadoDTO> getDeputadosView(){
-		Collection<DeputadoDTO> x = rep.getDeputadosSomasEMedias(DeputadoDTO.class);
-		return x;
+	public List<DeputadoDTO> getDeputadosView(){
+		return cfAlepeService.getDeputadosView();
 	}
 	
-	/*@GetMapping(path = "/deputado")
-	public List<DeputadoDTO> getDeputadosView2(){
-		return cfAlepeService.getDeputadosView();
-	}*/
+	@GetMapping(path = "/despesa")
+	public List<DespesaDTO> getDespesasView(){
+		return cfAlepeService.getDespesasView();
+	}
 	
-	/*@GetMapping(path = "/deputado2")
-	public List<DeputadoDTO> getDeputadosView2(){
-		List<DeputadoDTO> x = rep.getDeputadosView();
-		return x;
-	}*/
+	@GetMapping(path = "/fornecedor")
+	public List<FornecedorDTO> getFornecedoresView(){
+		return cfAlepeService.getFornecedoresView();
+	}
+	
 
 }

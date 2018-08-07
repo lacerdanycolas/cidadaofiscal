@@ -112,37 +112,37 @@ export class DashboardComponent implements OnInit {
 
     this.columnsDep = [
       {
-        prop: 'name',
-        name: 'name',
+        prop: 'parlamentar_fantasia',
+        name: 'parlamentar_fantasia',
 
       },
       {
-        prop:'media',
-        name: 'media'
+        prop:'despesa_media_mes',
+        name: 'despesa_media_mes'
       },
       {
-        prop : 'total',
-        name: 'total'
+        prop : 'soma',
+        name: 'soma'
       },
     ];
     this.columnsForn = [
       {
-        prop:'nomeFornecedor',
-        name:'nomeFornecedor'
+        prop:'fornecedor_nome',
+        name:'fornecedor_nome'
       },
       {
-        prop: 'totalRecebido',
-        name:'totalRecebido'
+        prop: 'soma',
+        name:'soma'
       },
       {
-        prop:'qtdDept',
-        name:'qtdDept'
+        prop:'deputados_contador',
+        name:'deputados_contador'
       }
     ];
     this.columnsDespesa=[
       {
-        prop:'tipo',
-        name:'tipo'
+        prop:'despesa_tipo',
+        name:'despesa_tipo'
       },
       {
         prop:'y2015',
@@ -157,8 +157,8 @@ export class DashboardComponent implements OnInit {
         name:'y2017'
       },
       {
-        prop:'totalDespesas',
-        name:'totalDespesas'
+        prop:'total',
+        name:'total'
       }
     ]
 
@@ -178,7 +178,7 @@ export class DashboardComponent implements OnInit {
 
   fetchDeputados(cb) {
     const req = new XMLHttpRequest();
-    req.open('GET', `http://localhost:3000/deputados`);
+    req.open('GET', `http://localhost:8080/alepe/deputado`);
 
     req.onload = () => {
       cb(JSON.parse(req.response));
@@ -189,7 +189,7 @@ export class DashboardComponent implements OnInit {
 
   fetchFornecedores(cb) {
     const req = new XMLHttpRequest();
-    req.open('GET', `http://localhost:4000/fornecedores`);
+    req.open('GET', `http://localhost:8080/alepe/fornecedor`);
 
     req.onload = () => {
       cb(JSON.parse(req.response));
@@ -200,7 +200,7 @@ export class DashboardComponent implements OnInit {
 
   fetchDespesas(cb){
     const req = new XMLHttpRequest();
-    req.open('GET','http://localhost:3200/despesas');
+    req.open('GET','http://localhost:8080/alepe/despesa');
 
     req.onload = () => {
       cb(JSON.parse(req.response));

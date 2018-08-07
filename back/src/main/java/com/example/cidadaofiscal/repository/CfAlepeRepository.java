@@ -1,6 +1,6 @@
 package com.example.cidadaofiscal.repository;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -51,6 +51,63 @@ public interface CfAlepeRepository extends JpaRepository<CfAlepe, Long>{
 	"             \n" + 
 	" ",
 	nativeQuery = true)
-	<T> Collection<T> getDeputadosSomasEMedias(Class<T> type);
+	 List<Object[]> getDeputadosView();
+	 
+	 @Query(
+	 value= "SELECT res_by_type.despesa_tipo AS despesa_tipo,\n" + 
+	 		"    sum(y2015) as y2015,\n" + 
+	 		"    sum(y2016) as y2016,\n" + 
+	 		"    sum(y2017) as y2017,\n" + 
+	 		"    sum(despesa_valor) AS total\n" + 
+	 		"    FROM (\n" + 
+	 		"        SELECT \n" + 
+	 		"        despesa_tipo,\n" + 
+	 		"        despesa_valor,\n" + 
+	 		"        CASE(ordem_ano) WHEN (2015) THEN despesa_valor ELSE 0 END AS y2015,\n" + 
+	 		"        CASE(ordem_ano) WHEN (2016) THEN despesa_valor ELSE 0 END AS y2016,\n" + 
+	 		"        CASE(ordem_ano) WHEN (2017) THEN despesa_valor ELSE 0 END AS y2017        \n" + 
+	 		"		FROM\n" + 
+	 		"        cidadaofiscal.cf_alepe\n" + 
+	 		"        )\n" + 
+	 		"        AS res_by_type\n" + 
+	 		"    GROUP BY\n" + 
+	 		"        despesa_tipo\n" + 
+	 		"    ORDER BY \n" + 
+	 		"        total DESC;",
+	 		nativeQuery = true)
+	 		 List<Object[]> getDespesasView();
+	 		 
+	 @Query(
+	 value = "SELECT \n" + 
+	 		"        plain_data.fornecedor_nome AS fornecedor_nome,\n" + 
+	 		"        SUM(despesa_valor) AS soma,\n" + 
+	 		"        COUNT(DISTINCT parlamentar_nome) AS deputados_contador\n" + 
+	 		"    FROM\n" + 
+	 		"        cidadaofiscal.cf_alepe AS plain_data\n" + 
+	 		"        JOIN (\n" + 
+	 		"            SELECT \n" + 
+	 		"                fornecedor_nome,\n" + 
+	 		"                AVG(despesa_soma_mes) AS despesa_media_mes\n" + 
+	 		"            FROM\n" + 
+	 		"                (SELECT \n" + 
+	 		"                    fornecedor_nome,\n" + 
+	 		"                    SUM(despesa_valor) AS despesa_soma_mes\n" + 
+	 		"                FROM\n" + 
+	 		"                    cidadaofiscal.cf_alepe\n" + 
+	 		"                    \n" + 
+	 		"			GROUP BY\n" + 
+	 		"                    fornecedor_nome,\n" + 
+	 		"                    ordem_ano,\n" + 
+	 		"                    ordem_mes) AS month_sum\n" + 
+	 		"            GROUP\n" + 
+	 		"                BY fornecedor_nome\n" + 
+	 		"        ) AS month_avg \n" + 
+	 		"        ON month_avg.fornecedor_nome = plain_data.fornecedor_nome\n" + 
+	 		"    GROUP BY\n" + 
+	 		"        fornecedor_nome\n" + 
+	 		"    ORDER BY\n" + 
+	 		"        soma DESC", 
+	 		nativeQuery=true)
+	 		 List<Object[]> getFornecedoresView();
 	
 }

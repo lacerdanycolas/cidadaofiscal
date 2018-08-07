@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ExpenseTypePipe implements PipeTransform {
     transform(value: string): string {
         const typeNumber = ('' + value).trim();
-        switch (typeNumber) {
+        switch (typeNumber.substring(0,1)) {
             case '1':
                 return 'Locação de Imóveis';
             case '2':

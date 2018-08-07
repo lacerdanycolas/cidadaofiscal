@@ -39,8 +39,8 @@ export class VolunteerComponent implements OnInit {
   ngOnInit() {
     this.columnsVol = [
       {
-        prop: 'nomeVoluntario',
-        name: 'nomeVoluntario'
+        prop: 'nome',
+        name: 'nome'
       },
       {
         prop: 'email',
@@ -58,7 +58,7 @@ export class VolunteerComponent implements OnInit {
   }
   fetchVoluntarios(cb) {
     const req = new XMLHttpRequest();
-    req.open('GET', `http://localhost:5000/voluntarios`);
+    req.open('GET', `http://localhost:8080/voluntario`);
 
     req.onload = () => {
       cb(JSON.parse(req.response));
