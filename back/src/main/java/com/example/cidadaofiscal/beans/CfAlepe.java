@@ -9,12 +9,13 @@ import javax.persistence.Table;
 
 
 
+
 @Entity
 @Table(name="cf_alepe")
 @Cacheable
 public class CfAlepe {
 	
-	
+
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -138,5 +139,26 @@ public class CfAlepe {
 		this.fornecedor_nome = fornecedor_nome;
 	}
 	
+	/*@Query(
+			value= "SELECT \n" + 
+			"	parlamentar_fantasia,\n" + 
+			"	AVG(despesa_soma_mes) AS despesa_media_mes,\n" + 
+			"	sum(despesa_soma_mes) as soma\n" + 
+			"FROM\n" + 
+			"	(SELECT \n" + 
+			"		parlamentar_fantasia,\n" + 
+			"		SUM(despesa_valor) AS despesa_soma_mes\n" + 
+			"	FROM\n" + 
+			"		cidadaofiscal.cf_alepe\n" + 
+			"	GROUP BY\n" + 
+			"		parlamentar_fantasia,\n" + 
+			"		ordem_ano,\n" + 
+			"		ordem_mes) AS month_sum\n" + 
+			"GROUP BY parlamentar_fantasia\n" + 
+			"ORDER BY soma desc\n" + 
+			"             \n" + 
+			" ",
+			nativeQuery = true)
+	<T> Collection<T> getDeputadosSomasEMedias(Class<T> type);*/
 	
 }
