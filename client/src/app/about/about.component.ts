@@ -38,8 +38,17 @@ export class AboutComponent implements OnInit {
    this.cadastrado = false;
   }
 
+  validateTelefone(){
+    var value = this.volunteer.telefone;
+    var matches = value.match(/\d+/g);
+    if(matches != null &&
+      matches.length == 1 &&
+      value.length == matches[0].length){
+        this.status = true;
+      }
+      return this.status;
+  }
   validatefields(){
-
 
     var volaux = this.volunteer;
     if(volaux.nome == "" || volaux.email == "" ||
@@ -76,7 +85,7 @@ export class AboutComponent implements OnInit {
 
   sendVol(){
     debugger
-    if(!this.validatefields()) {
+    if(!this.validatefields() && this.validateTelefone()) {
       var vol = this.volunteer;
       var json = JSON.stringify(vol);
       var xhr = new XMLHttpRequest();
@@ -96,6 +105,8 @@ export class AboutComponent implements OnInit {
       xhr.send(json);
       this.status = false;
       this.cadastrado = true;
+    }else{
+
     }
   }
 
