@@ -47,28 +47,31 @@ $( document ).ready(function() {
             <div class="row">
               <div class="form-group col-lg-6 col-md-6">
                 <label for="expenseValueFrom">Valor De</label>
-                <input type="number" class="form-control" id="expenseValueFrom" placeholder="0"  [(ngModel)]="detailParameters.expenseValueFrom">
+                <input type="number" class="form-control" id="expenseValueFrom" placeholder="0"  [(ngModel)]="detailParameters.despesa_valorDe">
               </div>
               <div class="form-group col-lg-6 col-md-6">
                 <label for="expenseValueTo">Valor Até</label>
-                <input type="number" class="form-control" id="expenseValueTo" placeholder="9999" [(ngModel)]="detailParameters.expenseValueTo">
+                <input type="number" class="form-control" id="expenseValueTo" placeholder="9999" [(ngModel)]="detailParameters.despesa_valorAte">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-lg-6 col-md-6">
                 <label for="expenseDateFrom">Data De</label>
-                <input type="date" class="form-control" id="expenseValueFrom" placeholder="" [(ngModel)]="detailParameters.expenseDateFrom">
+                <input type="date" class="form-control" id="expenseValueFrom" placeholder="" [(ngModel)]="detailParameters.despesa_dataDe">
               </div>
               <div class="form-group col-lg-6 col-md-6">
                 <label for="expenseDateTo">Data Até</label>
-                <input type="date" class="form-control" id="expenseValueTo" placeholder="" [(ngModel)]="detailParameters.expenseDateTo">
+                <input type="date" class="form-control" id="expenseValueTo" placeholder="" [(ngModel)]="detailParameters.despesa_dataAte">
               </div>
             </div>
           </div>
         </div>
         <div class="card-body">
             <button class="btn btn-secondary" (click)="resetParameters()">Limpar</button>
-            <button class="btn btn-primary" (click)="getPesquisa()">Pesquisar</button>
+            <button class="btn btn-primary" (click)="getPesquisa(); getLoading()">Pesquisar</button>
+        </div>
+        <div id= "loadingDiv" style="display: none">
+           <p class="progress-bar" style="background-color: #235982">Carregando...</p>
         </div>
       </div>
     </div>

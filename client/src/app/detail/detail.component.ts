@@ -27,13 +27,14 @@ export class DetailComponent implements OnInit {
   parlamentar_partido: '',
   fornecedor_id: '',
   fornecedor_nome: '',
-  expenseValueFrom: '',
-  expenseValueTo: '',
-  expenseDateFrom: '',
-  expenseDateTo: ''
+  despesa_valorDe: '',
+  despesa_valorAte: '',
+  despesa_dataDe: '',
+  despesa_dataAte: ''
   };
 
   url;
+  loaded;
 
   constructor(private detailService: DetailService) {
     this.detailParameters.limit = 9999;
@@ -46,15 +47,16 @@ export class DetailComponent implements OnInit {
       parlamentar_partido: '',
       fornecedor_id: '',
       fornecedor_nome: '',
-      expenseValueFrom: '',
-      expenseValueTo: '',
-      expenseDateFrom: '',
-      expenseDateTo: ''
+      despesa_valorDe: '',
+      despesa_valorAte: '',
+      despesa_dataDe: '',
+      despesa_dataAte: ''
     };
-
+    this.loaded = false;
   }
 
   getPesquisa() {
+    document.getElementById("loadingDiv").style["display"] =  "block";
     this.fetchPesquisa((data) => {
       this.detailRows = data;
     });
@@ -66,19 +68,23 @@ export class DetailComponent implements OnInit {
     req.open('GET', this.url);
     req.onload = () => {
       cb(JSON.parse(req.response));
+      document.getElementById("loadingDiv").style["display"] =  "none";
     };
 
     req.send();
   }
 
   composeUrl(): string {
+    debugger;
     let url = 'http://localhost:8080/alepe/pesquisa';
     let paradd = false;
-    if (this.detailParameters.parlamentar_fantasia != '') {
+    if (this.detailParameters.parlamentar_fantasia != '' && this.detailParameters.parlamentar_fantasia != null
+        && this.detailParameters.parlamentar_fantasia != undefined) {
       url += '?parlamentar_fantasia=' + this.detailParameters.parlamentar_fantasia;
       paradd = true;
     }
-    if (this.detailParameters.parlamentar_partido != '') {
+    if (this.detailParameters.parlamentar_partido != '' && this.detailParameters.parlamentar_partido != null 
+        && this.detailParameters.parlamentar_partido != undefined) {
       if (paradd) {
         url += '&parlamentar_partido=' + this.detailParameters.parlamentar_partido;
       } else {
@@ -86,7 +92,8 @@ export class DetailComponent implements OnInit {
         paradd = true;
       }
     }
-    if (this.detailParameters.fornecedor_id != '') {
+    if (this.detailParameters.fornecedor_id != '' && this.detailParameters.fornecedor_id != null 
+        && this.detailParameters.fornecedor_id != undefined ) {
       if (paradd) {
         url += '&fornecedor_id=' + this.detailParameters.fornecedor_id;
       } else {
@@ -94,11 +101,48 @@ export class DetailComponent implements OnInit {
         paradd = true;
       }
     }
-    if (this.detailParameters.fornecedor_nome != '') {
+    if (this.detailParameters.fornecedor_nome != '' && this.detailParameters.fornecedor_nome != null 
+       && this.detailParameters.fornecedor_nome != undefined) {
       if (paradd) {
         url += '&fornecedor_nome=' + this.detailParameters.fornecedor_nome;
       } else {
         url += '?fornecedor_nome=' + this.detailParameters.fornecedor_nome;
+        paradd = true;
+      }
+    }
+    if(this.detailParameters.despesa_dataDe != '' && this.detailParameters.despesa_dataDe != null 
+      && this.detailParameters.despesa_dataDe != undefined){
+      if(paradd){
+        url += '&despesa_dataDe=' + this.detailParameters.despesa_dataDe;
+      } else{
+        url += '?despesa_dataDe=' + this.detailParameters.despesa_dataDe;
+        paradd = true;
+      }
+    }
+    if(this.detailParameters.despesa_dataAte != '' && this.detailParameters.despesa_dataAte != null
+      && this.detailParameters.despesa_dataAte != undefined){
+      if(paradd){
+        url += '&despesa_dataAte=' + this.detailParameters.despesa_dataAte;
+      } else{
+        url += '?despesa_dataAte=' + this.detailParameters.despesa_dataAte;
+        paradd = true;
+      }
+    }
+    if(this.detailParameters.despesa_valorDe != '' && this.detailParameters.despesa_valorDe != null
+      && this.detailParameters.despesa_valorDe != undefined){
+      if(paradd){
+        url += '&despesa_valorDe=' + this.detailParameters.despesa_valorDe;
+      } else{
+        url += '?despesa_valorDe=' + this.detailParameters.despesa_valorDe;
+        paradd = true;
+      }
+    }
+    if(this.detailParameters.despesa_valorAte != '' && this.detailParameters.despesa_valorAte != null
+      && this.detailParameters.despesa_valorAte != undefined){
+      if(paradd){
+        url += '&despesa_valorAte=' + this.detailParameters.despesa_valorAte;
+      } else{
+        url += '?despesa_valorAte=' + this.detailParameters.despesa_valorAte;
         paradd = true;
       }
     }
@@ -117,10 +161,10 @@ export class DetailComponent implements OnInit {
       parlamentar_partido: '',
       fornecedor_id: '',
       fornecedor_nome: '',
-      expenseValueFrom: '',
-      expenseValueTo: '',
-      expenseDateFrom: '',
-      expenseDateTo: ''
+      despesa_valorDe: '',
+    despesa_valorAte: '',
+    despesa_dataDe: '',
+    despesa_dataAte: ''
     }
     this.detailParameters.limit = 9999;
   }

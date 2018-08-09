@@ -15,7 +15,6 @@ import com.example.cidadaofiscal.beans.DeputadoDTO;
 import com.example.cidadaofiscal.beans.DespesaDTO;
 import com.example.cidadaofiscal.beans.FornecedorDTO;
 import com.example.cidadaofiscal.beans.PesquisaDTO;
-import com.example.cidadaofiscal.repository.CfAlepeRepository;
 import com.example.cidadaofiscal.service.CfAlepeService;
 
 @RestController
@@ -25,8 +24,6 @@ public class CfAlepeController {
 	
 	@Autowired 
 	private CfAlepeService cfAlepeService;
-	@Autowired
-	private CfAlepeRepository cfAlepeRepository;
 	
 	@GetMapping
 	public List<CfAlepe> returnAll(){
@@ -63,9 +60,11 @@ public class CfAlepeController {
 			@RequestParam(value="fornecedor_id", required=false)String fornecedor_id,
 			@RequestParam(value="fornecedor_nome", required=false)String fornecedor_nome,
 			@RequestParam(value="despesa_tipo", required=false)String despesa_tipo,
-			@RequestParam(value="despesa_valor", required=false)String despesa_valor,
-			@RequestParam(value="despesa_data", required=false)String despesa_data,
+			@RequestParam(value="despesa_valorDe", required=false)String despesa_valorDe,
+			@RequestParam(value="despesa_valorAte", required=false)String despesa_valorAte,
+			@RequestParam(value="despesa_dataDe", required=false)String despesa_dataDe,
+			@RequestParam(value="despesa_dataAte", required=false)String despesa_dataAte,
 			@RequestParam(value="despesa_cancelada", required=false)String despesa_cancelada){
-		return cfAlepeService.getPesquisaResult(parlamentar_fantasia, parlamentar_partido, parlamentar_nome, ordem_ano, ordem_mes, fornecedor_id, fornecedor_nome, despesa_tipo, despesa_valor, despesa_cancelada, despesa_data);
+		return cfAlepeService.getPesquisaResult(parlamentar_fantasia, parlamentar_partido, parlamentar_nome, ordem_ano, ordem_mes, fornecedor_id, fornecedor_nome, despesa_tipo, despesa_valorDe, despesa_valorAte, despesa_dataDe, despesa_dataAte, despesa_cancelada);
 	}
 }

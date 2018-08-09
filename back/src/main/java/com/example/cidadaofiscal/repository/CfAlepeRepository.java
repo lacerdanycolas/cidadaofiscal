@@ -127,17 +127,19 @@ public interface CfAlepeRepository extends JpaRepository<CfAlepe, Long>{
 	 				"FROM\n" + 
 	 				"    cidadaofiscal.cf_alepe AS data\n" + 
 	 				"WHERE \n" + 
-	 				"(data.parlamentar_fantasia= :parlamentar_fantasia IS NULL OR data.parlamentar_fantasia= :parlamentar_fantasia) \n" + 
-	 				"AND (data.parlamentar_partido= :parlamentar_partido IS NULL OR data.parlamentar_partido= parlamentar_partido)\n" + 
+	 				"(data.parlamentar_fantasia= :parlamentar_fantasia IS NULL OR data.parlamentar_fantasia LIKE :parlamentar_fantasia%) \n" + 
+	 				"AND (data.parlamentar_partido= :parlamentar_partido IS NULL OR data.parlamentar_partido= :parlamentar_partido)\n" + 
 	 				"AND (data.parlamentar_nome= :parlamentar_nome IS NULL OR data.parlamentar_nome= :parlamentar_nome) \n" + 
 	 				"AND (data.ordem_ano= :ordem_ano IS NULL OR data.ordem_ano= :ordem_ano) \n" + 
 	 				"AND (data.ordem_mes= :ordem_mes IS NULL OR data.ordem_mes= :ordem_mes)\n" + 
 	 				"AND (data.fornecedor_id= :fornecedor_id IS NULL OR data.fornecedor_id= :fornecedor_id)\n" + 
-	 				"AND (data.fornecedor_nome= :fornecedor_nome IS NULL OR data.fornecedor_nome= :fornecedor_nome)\n" + 
+	 				"AND (data.fornecedor_nome= :fornecedor_nome IS NULL OR data.fornecedor_nome LIKE :fornecedor_nome%)\n" + 
 	 				"AND (data.despesa_tipo= :despesa_tipo IS NULL OR data.despesa_tipo= :despesa_tipo)\n" + 
-	 				"AND (data.despesa_valor= :despesa_valor IS NULL OR data.despesa_valor= :despesa_valor) \n" + 
+	 				"AND (data.despesa_valor= :despesa_valorDe IS NULL OR data.despesa_valor >= :despesa_valorDe)\n" +
+	 				"AND (data.despesa_valor= :despesa_valorAte IS NULL OR data.despesa_valor <= :despesa_valorAte)\n" +
 	 				"AND (data.despesa_cancelada= :despesa_cancelada IS NULL OR data.despesa_cancelada= :despesa_cancelada)\n" + 
-	 				"AND (data.despesa_data= :despesa_data IS NULL OR data.despesa_data= :despesa_data)\n" + 
+	 				"AND (data.despesa_data= :despesa_dataDe IS NULL OR data.despesa_data >= :despesa_dataDe)\n" +
+	 				"AND (data.despesa_data= :despesa_dataAte IS NULL OR data.despesa_data <= :despesa_dataAte)\n" + 
 	 				"ORDER BY data.despesa_data ASC\n" + 
 	 				"\n" + 
 	 				"\n" + 
@@ -151,8 +153,11 @@ public interface CfAlepeRepository extends JpaRepository<CfAlepe, Long>{
 	 						                           @Param("fornecedor_id")String fornecedor_id,
 	 						                           @Param("fornecedor_nome")String fornecedor_nome,
 	 						                           @Param("despesa_tipo")String despesa_tipo,
-	 						                           @Param("despesa_valor")String despesa_valor,
-	 						                           @Param("despesa_cancelada")String despesa_cancelada,
-	 						                           @Param("despesa_data")String despesa_data);
+	 						                           @Param("despesa_valorDe")String despesa_valorDe,
+	 						                           @Param("despesa_valorAte")String despesa_valorAte,
+	 						                           @Param("despesa_dataDe")String despesa_dataDe,
+	 						                           @Param("despesa_dataAte")String despesa_dataAte,
+	 						                           @Param("despesa_cancelada")String despesa_cancelada
+	 						                           );
 	
 }

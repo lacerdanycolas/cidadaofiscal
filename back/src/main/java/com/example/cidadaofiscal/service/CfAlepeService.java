@@ -50,9 +50,9 @@ public class CfAlepeService {
 		return fornecedores;
 	}
 	
-	public List<PesquisaDTO> getPesquisaResult(String parlamentar_fantasia, String parlamentar_partido, String parlamentar_nome, String ordem_ano, String ordem_mes, String fornecedor_id, String fornecedor_nome, String despesa_tipo, String despesa_valor, String despesa_cancelada, String despesa_data){
+	public List<PesquisaDTO> getPesquisaResult(String parlamentar_fantasia, String parlamentar_partido, String parlamentar_nome, String ordem_ano, String ordem_mes, String fornecedor_id, String fornecedor_nome, String despesa_tipo, String despesa_valorDe, String despesa_valorAte, String despesa_dataDe, String despesa_dataAte, String despesa_cancelada){
 		List<PesquisaDTO> pesquisa = new ArrayList<PesquisaDTO>();
-		List<Object[]> result = cfAlepeRepository.getPesquisaResults(parlamentar_fantasia, parlamentar_partido, parlamentar_nome, ordem_ano, ordem_mes, fornecedor_id, fornecedor_nome, despesa_tipo, despesa_valor, despesa_cancelada, despesa_data);
+		List<Object[]> result = cfAlepeRepository.getPesquisaResults(parlamentar_fantasia, parlamentar_partido, parlamentar_nome, ordem_ano, ordem_mes, fornecedor_id, fornecedor_nome, despesa_tipo, despesa_valorDe, despesa_valorAte, despesa_dataDe, despesa_dataAte, despesa_cancelada);
 		result.forEach(r -> pesquisa.add(new PesquisaDTO(r[0].toString(), r[1].toString(), r[2].toString(), r[3].toString(), r[4].toString(), r[5].toString(), r[6].toString(), r[7].toString(), r[8].toString(), r[9].toString(), r[10].toString() )));
 		return pesquisa;
 	}
