@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { DetailParameters } from './../detail-parameters';
 
 
+
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -11,22 +13,96 @@ import { DetailParameters } from './../detail-parameters';
 export class DetailComponent implements OnInit {
   detailRows = [];
   detailCols = [
-    { prop: 'memberPoliticalName', name: 'Deputado' },
-    { prop: 'memberParty', name: 'Partido' },
-    { prop: 'supplierName', name: 'Fornecedor'},
-    { prop: 'expenseType', name: 'Tipo de Despesa'},
-    { prop: 'expenseValue', name: 'Valor'},
-    { prop: 'expenseCanceled', name: 'Nota Cancelada'},
-    { prop: 'expenseDate', name: 'Data'}
+    { prop: 'parlamentar_fantasia', name: 'parlamentar_fantasia' },
+    { prop: 'parlamentar_partido', name: 'parlamentar_partido' },
+    { prop: 'despesa_tipo', name: 'despesa_tipo'},
+    { prop: 'fornecedor_nome', name: 'fornecedor_nome'},
+    { prop: 'despesa_valor', name: 'despesa_valor'},
+    { prop: 'despesa_data', name: 'despesa_data'}
   ];
 
-  detailParameters = new DetailParameters();
+  detailParameters = {
+    limit: 0,
+  parlamentar_fantasia: '',
+  parlamentar_partido: '',
+  fornecedor_id: '',
+  fornecedor_nome: '',
+  expenseValueFrom: '',
+  expenseValueTo: '',
+  expenseDateFrom: '',
+  expenseDateTo: ''
+  };
+
+  url;
 
   constructor(private detailService: DetailService) {
     this.detailParameters.limit = 9999;
   }
 
   ngOnInit() {
+   this.detailParameters = {
+      limit: 9999,
+      parlamentar_fantasia: '',
+      parlamentar_partido: '',
+      fornecedor_id: '',
+      fornecedor_nome: '',
+      expenseValueFrom: '',
+      expenseValueTo: '',
+      expenseDateFrom: '',
+      expenseDateTo: ''
+    };
+
+  }
+
+  getPesquisa() {
+    this.fetchPesquisa((data) => {
+      this.detailRows = data;
+    });
+  }
+
+  fetchPesquisa(cb) {
+    this.url = this.composeUrl();
+    const req = new XMLHttpRequest();
+    req.open('GET', this.url);
+    req.onload = () => {
+      cb(JSON.parse(req.response));
+    };
+
+    req.send();
+  }
+
+  composeUrl(): string {
+    let url = 'http://localhost:8080/alepe/pesquisa';
+    let paradd = false;
+    if (this.detailParameters.parlamentar_fantasia != '') {
+      url += '?parlamentar_fantasia=' + this.detailParameters.parlamentar_fantasia;
+      paradd = true;
+    }
+    if (this.detailParameters.parlamentar_partido != '') {
+      if (paradd) {
+        url += '&parlamentar_partido=' + this.detailParameters.parlamentar_partido;
+      } else {
+        url += '?parlamentar_partido=' + this.detailParameters.parlamentar_partido;
+        paradd = true;
+      }
+    }
+    if (this.detailParameters.fornecedor_id != '') {
+      if (paradd) {
+        url += '&fornecedor_id=' + this.detailParameters.fornecedor_id;
+      } else {
+        url += '?fornecedor_id=' + this.detailParameters.fornecedor_id;
+        paradd = true;
+      }
+    }
+    if (this.detailParameters.fornecedor_nome != '') {
+      if (paradd) {
+        url += '&fornecedor_nome=' + this.detailParameters.fornecedor_nome;
+      } else {
+        url += '?fornecedor_nome=' + this.detailParameters.fornecedor_nome;
+        paradd = true;
+      }
+    }
+    return url;
   }
 
   getDetails(): void {
@@ -35,7 +111,17 @@ export class DetailComponent implements OnInit {
   }
 
   resetParameters() {
-    this.detailParameters = new DetailParameters();
+    this.detailParameters = {
+      limit: 0,
+      parlamentar_fantasia: '',
+      parlamentar_partido: '',
+      fornecedor_id: '',
+      fornecedor_nome: '',
+      expenseValueFrom: '',
+      expenseValueTo: '',
+      expenseDateFrom: '',
+      expenseDateTo: ''
+    }
     this.detailParameters.limit = 9999;
   }
 }

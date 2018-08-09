@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.cidadaofiscal.beans.CfAlepe;
@@ -124,24 +125,34 @@ public interface CfAlepeRepository extends JpaRepository<CfAlepe, Long>{
 	 				"	despesa_cancelada,\n" + 
 	 				"    despesa_data\n" + 
 	 				"FROM\n" + 
-	 				"    cidadaofiscal.cf_alepe\n" + 
+	 				"    cidadaofiscal.cf_alepe AS data\n" + 
 	 				"WHERE \n" + 
-	 				"parlamentar_fantasia IS NOT NULL \n" + 
-	 				"AND parlamentar_partido IS NOT NULL\n" + 
-	 				"AND parlamentar_nome IS NOT NULL\n" + 
-	 				"AND ordem_ano IS NOT NULL\n" + 
-	 				"AND ordem_mes IS NOT NULL\n" + 
-	 				"AND fornecedor_id IS NOT NULL\n" + 
-	 				"AND fornecedor_nome IS NOT NULL\n" + 
-	 				"AND despesa_tipo IS NOT NULL\n" + 
-	 				"AND despesa_valor IS NOT NULL\n" + 
-	 				"AND despesa_cancelada IS NOT NULL\n" + 
-	 				"AND despesa_data IS NOT NULL\n" + 
-	 				"ORDER BY despesa_data ASC\n" + 
+	 				"(data.parlamentar_fantasia= :parlamentar_fantasia IS NULL OR data.parlamentar_fantasia= :parlamentar_fantasia) \n" + 
+	 				"AND (data.parlamentar_partido= :parlamentar_partido IS NULL OR data.parlamentar_partido= parlamentar_partido)\n" + 
+	 				"AND (data.parlamentar_nome= :parlamentar_nome IS NULL OR data.parlamentar_nome= :parlamentar_nome) \n" + 
+	 				"AND (data.ordem_ano= :ordem_ano IS NULL OR data.ordem_ano= :ordem_ano) \n" + 
+	 				"AND (data.ordem_mes= :ordem_mes IS NULL OR data.ordem_mes= :ordem_mes)\n" + 
+	 				"AND (data.fornecedor_id= :fornecedor_id IS NULL OR data.fornecedor_id= :fornecedor_id)\n" + 
+	 				"AND (data.fornecedor_nome= :fornecedor_nome IS NULL OR data.fornecedor_nome= :fornecedor_nome)\n" + 
+	 				"AND (data.despesa_tipo= :despesa_tipo IS NULL OR data.despesa_tipo= :despesa_tipo)\n" + 
+	 				"AND (data.despesa_valor= :despesa_valor IS NULL OR data.despesa_valor= :despesa_valor) \n" + 
+	 				"AND (data.despesa_cancelada= :despesa_cancelada IS NULL OR data.despesa_cancelada= :despesa_cancelada)\n" + 
+	 				"AND (data.despesa_data= :despesa_data IS NULL OR data.despesa_data= :despesa_data)\n" + 
+	 				"ORDER BY data.despesa_data ASC\n" + 
 	 				"\n" + 
 	 				"\n" + 
 	 				"\n" + 
 	 				"", nativeQuery = true)
-	 				 List<Object[]> getPesquisaResults();
+	 				 List<Object[]> getPesquisaResults(@Param("parlamentar_fantasia") String parlamentar_fantasia,
+	 						                           @Param("parlamentar_partido") String parlamentar_partido,
+	 						                           @Param("parlamentar_nome")String parlamentar_nome,
+	 						                           @Param("ordem_ano")String ordem_ano,
+	 						                           @Param("ordem_mes")String ordem_mes,
+	 						                           @Param("fornecedor_id")String fornecedor_id,
+	 						                           @Param("fornecedor_nome")String fornecedor_nome,
+	 						                           @Param("despesa_tipo")String despesa_tipo,
+	 						                           @Param("despesa_valor")String despesa_valor,
+	 						                           @Param("despesa_cancelada")String despesa_cancelada,
+	 						                           @Param("despesa_data")String despesa_data);
 	
 }

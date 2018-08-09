@@ -25,8 +25,8 @@ export class DashboardComponent implements OnInit {
 
     },
     {
-      prop:'media',
-      name:'media'
+      prop: 'media',
+      name: 'media'
     },
     {
       prop : 'total',
@@ -38,41 +38,41 @@ export class DashboardComponent implements OnInit {
   rowsForn = [];
   columnsForn = [
     {
-        prop:'nomeFornecedor',
-        name:'nomeFornecedor'
+        prop: 'nomeFornecedor',
+        name: 'nomeFornecedor'
     },
     {
         prop: 'totalRecebido',
-        name:'totalRecebido'
+        name: 'totalRecebido'
     },
     {
-        prop:'qtdDept',
-        name:'qtdDept'
+        prop: 'qtdDept',
+        name: 'qtdDept'
     }
   ]
 
 
   rowsDespesa = [];
-  columnsDespesa=[
+  columnsDespesa= [
     {
-      prop:'tipo',
-      name:'tipo'
+      prop: 'tipo',
+      name: 'tipo'
     },
     {
-      prop:'y2015',
-      name:'y2015'
+      prop: 'y2015',
+      name: 'y2015'
     },
     {
-      prop:'y2016',
-      name:'y2016'
+      prop: 'y2016',
+      name: 'y2016'
     },
     {
-      prop:'y2017',
-      name:'y2017'
+      prop: 'y2017',
+      name: 'y2017'
     },
     {
-      prop:'totalDespesas',
-      name:'totalDespesas'
+      prop: 'totalDespesas',
+      name: 'totalDespesas'
     }
   ]
 
@@ -117,7 +117,7 @@ export class DashboardComponent implements OnInit {
 
       },
       {
-        prop:'despesa_media_mes',
+        prop: 'despesa_media_mes',
         name: 'despesa_media_mes'
       },
       {
@@ -127,38 +127,38 @@ export class DashboardComponent implements OnInit {
     ];
     this.columnsForn = [
       {
-        prop:'fornecedor_nome',
-        name:'fornecedor_nome'
+        prop: 'fornecedor_nome',
+        name: 'fornecedor_nome'
       },
       {
         prop: 'soma',
-        name:'soma'
+        name: 'soma'
       },
       {
-        prop:'deputados_contador',
-        name:'deputados_contador'
+        prop: 'deputados_contador',
+        name: 'deputados_contador'
       }
     ];
-    this.columnsDespesa=[
+    this.columnsDespesa= [
       {
-        prop:'despesa_tipo',
-        name:'despesa_tipo'
+        prop: 'despesa_tipo',
+        name: 'despesa_tipo'
       },
       {
-        prop:'y2015',
-        name:'y2015'
+        prop: 'y2015',
+        name: 'y2015'
       },
       {
-        prop:'y2016',
-        name:'y2016'
+        prop: 'y2016',
+        name: 'y2016'
       },
       {
-        prop:'y2017',
-        name:'y2017'
+        prop: 'y2017',
+        name: 'y2017'
       },
       {
-        prop:'total',
-        name:'total'
+        prop: 'total',
+        name: 'total'
       }
     ]
 
@@ -200,7 +200,7 @@ export class DashboardComponent implements OnInit {
 
   fetchDespesas(cb){
     const req = new XMLHttpRequest();
-    req.open('GET','http://localhost:8080/alepe/despesa');
+    req.open('GET', 'http://localhost:8080/alepe/despesa');
 
     req.onload = () => {
       cb(JSON.parse(req.response));

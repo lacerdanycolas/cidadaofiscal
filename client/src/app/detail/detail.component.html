@@ -23,26 +23,26 @@ $( document ).ready(function() {
         <div class="row container-search">
           <div class="col-md-4">
             <div class="form-group">
-              <label for="memberPoliticalName">Deputado</label>
-              <input type="text" class="form-control" id="memberPoliticalName" placeholder="Nome Do Deputado" [(ngModel)]="detailParameters.memberPoliticalName">
+              <label for="parlamentar_fantasia">Deputado</label>
+              <input type="text" class="form-control" id="parlamentar_fantasia" placeholder="Nome Do Deputado" [(ngModel)]="detailParameters.parlamentar_fantasia">
             </div>
             <div class="form-group">
-              <label for="formGroupExampleInput2">Partido</label>
-              <input type="text" class="form-control" id="memberParty" placeholder="Partido"  [(ngModel)]="detailParameters.memberParty">
+              <label for="parlamentar_partido">Partido</label>
+              <input type="text" class="form-control" id="parlamentar_partido" placeholder="Partido"  [(ngModel)]="detailParameters.parlamentar_partido">
             </div>
           </div>
-  
+
           <div class="col-md-4">
             <div class="form-group">
-              <label for="supplierId">CPF/CNPJ do Fornecedor</label>
-              <input type="text" class="form-control" id="supplierId" placeholder="CPF ou CPNJ sem Separadores"  [(ngModel)]="detailParameters.supplierId">
+              <label for="fornecedor_id">CPF/CNPJ do Fornecedor</label>
+              <input type="text" class="form-control" id="fornecedor_id" placeholder="CPF ou CPNJ sem Separadores"  [(ngModel)]="detailParameters.fornecedor_id">
             </div>
             <div class="form-group">
-              <label for="supplierName">Nome do Fornecedor</label>
-              <input type="text" class="form-control" id="supplierName" placeholder="Nome do Fornecedor"  [(ngModel)]="detailParameters.supplierName">
+              <label for="fornecedor_nome">Nome do Fornecedor</label>
+              <input type="text" class="form-control" id="fornecedor_nome" placeholder="Nome do Fornecedor"  [(ngModel)]="detailParameters.fornecedor_nome">
             </div>
           </div>
-  
+
           <div class="col-md-4">
             <div class="row">
               <div class="form-group col-lg-6 col-md-6">
@@ -68,7 +68,7 @@ $( document ).ready(function() {
         </div>
         <div class="card-body">
             <button class="btn btn-secondary" (click)="resetParameters()">Limpar</button>
-            <button class="btn btn-primary" (click)="getDetails()">Pesquisar</button>
+            <button class="btn btn-primary" (click)="getPesquisa()">Pesquisar</button>
         </div>
       </div>
     </div>
@@ -91,32 +91,32 @@ $( document ).ready(function() {
         [limit]="10"
         [rowHeight]="'46'"
         [messages]="{emptyMessage:'Sem dados para exibir',totalMessage:'no total'}">>
-          <ngx-datatable-column prop="memberPoliticalName" name="Deputado(a)"  [flexGrow]="3">
+          <ngx-datatable-column prop="parlamentar_fantasia" name="Deputado(a)"  [flexGrow]="3">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span [ngbTooltip]="row.memberName" container="body">{{value}}</span>
+                <span [ngbTooltip]="row.parlamentar_nome" container="body">{{value}}</span>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="memberParty" name="Partido" [flexGrow]="2">
+          <ngx-datatable-column prop="parlamentar_partido" name="Partido" [flexGrow]="2">
             <ng-template let-value="value" ngx-datatable-cell-template>
               {{value}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="expenseType" name="Tipo" [flexGrow]="6">
+          <ngx-datatable-column prop="despesa_tipo" name="Tipo" [flexGrow]="6">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span [ngbTooltip]="value | expenseType" container="body">{{value | expenseType}}</span>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="supplierName" name="Fornecedor" [flexGrow]="6">
+          <ngx-datatable-column prop="fornecedor_nome" name="Fornecedor" [flexGrow]="6">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              <span [ngbTooltip]="value + ' (' + row.supplierId + ')'" container="body">{{value}}</span>
+              <span [ngbTooltip]="value + ' (' + row.fornecedor_id + ')'" container="body">{{value}}</span>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="expenseValue" name="Valor" [flexGrow]="2">
+          <ngx-datatable-column prop="despesa_valor" name="Valor" [flexGrow]="2">
             <ng-template let-value="value" ngx-datatable-cell-template>
                 {{value | currency:"R$"}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="expenseDate" name="Data" [flexGrow]="2">
+          <ngx-datatable-column prop="despesa_data" name="Data" [flexGrow]="2">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span>{{value | date:'shortDate'}}</span>
             </ng-template>

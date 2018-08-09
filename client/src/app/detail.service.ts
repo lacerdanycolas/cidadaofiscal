@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class DetailService {
 
-  private detailUrl = '/api/alepe/detail.php';
+  private detailUrl = '/pesquisa';
   constructor(private http: HttpClient, private configService: ConfigService) {
 
   }
@@ -16,10 +16,10 @@ export class DetailService {
     let params = new HttpParams();
     params = (parameters.limit === undefined) ? params : params.append('limit', parameters.limit);
 
-    params = this.appendParameterIfExists(params, parameters, 'memberPoliticalName');
-    params = this.appendParameterIfExists(params, parameters, 'memberParty');
-    params = this.appendParameterIfExists(params, parameters, 'supplierName');
-    params = this.appendParameterIfExists(params, parameters, 'supplierId');
+    params = this.appendParameterIfExists(params, parameters, 'parlamentar_fantasia');
+    params = this.appendParameterIfExists(params, parameters, 'parlamentar_partido');
+    params = this.appendParameterIfExists(params, parameters, 'fornecedor_nome');
+    params = this.appendParameterIfExists(params, parameters, 'fornecedor_id');
     params = this.appendParameterIfExists(params, parameters, 'expenseValueFrom');
     params = this.appendParameterIfExists(params, parameters, 'expenseValueTo');
     params = this.appendParameterIfExists(params, parameters, 'expenseDateFrom');

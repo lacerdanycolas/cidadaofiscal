@@ -84,7 +84,7 @@ export class AboutComponent implements OnInit {
   }
 
   sendVol(){
-    debugger
+    debugger;
     if(!this.validatefields() && this.validateTelefone()) {
       var vol = this.volunteer;
       var json = JSON.stringify(vol);
