@@ -34,7 +34,7 @@ export class DetailComponent implements OnInit {
   };
 
   url;
-  loaded;
+
 
   constructor(private detailService: DetailService) {
     this.detailParameters.limit = 9999;
@@ -52,7 +52,6 @@ export class DetailComponent implements OnInit {
       despesa_dataDe: '',
       despesa_dataAte: ''
     };
-    this.loaded = false;
   }
 
   getPesquisa() {
