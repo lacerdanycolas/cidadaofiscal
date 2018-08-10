@@ -91,32 +91,32 @@ $( document ).ready(function() {
         [limit]="10"
         [rowHeight]="'46'"
         [messages]="{emptyMessage:'Sem dados para exibir',totalMessage:'no total'}">>
-          <ngx-datatable-column prop="memberPoliticalName" name="Deputado(a)"  [flexGrow]="3">
+          <ngx-datatable-column prop="parlamentar_fantasia" name="Deputado(a)"  [flexGrow]="3">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span [ngbTooltip]="row.memberName" container="body">{{value}}</span>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="memberParty" name="Partido" [flexGrow]="2">
+          <ngx-datatable-column prop="parlamentar_partido" name="Partido" [flexGrow]="2">
             <ng-template let-value="value" ngx-datatable-cell-template>
               {{value}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="expenseType" name="Tipo" [flexGrow]="6">
+          <ngx-datatable-column prop="despesa_tipo" name="Tipo" [flexGrow]="6">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span [ngbTooltip]="value | expenseType" container="body">{{value | expenseType}}</span>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="supplierName" name="Fornecedor" [flexGrow]="6">
+          <ngx-datatable-column prop="fornecedor_nome" name="Fornecedor" [flexGrow]="6">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
               <span [ngbTooltip]="value + ' (' + row.supplierId + ')'" container="body">{{value}}</span>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="expenseValue" name="Valor" [flexGrow]="2">
+          <ngx-datatable-column prop="despesa_valor" name="Valor" [flexGrow]="2">
             <ng-template let-value="value" ngx-datatable-cell-template>
                 {{value | currency:"R$"}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="expenseDate" name="Data" [flexGrow]="2">
+          <ngx-datatable-column prop="despesa_data" name="Data" [flexGrow]="2">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span>{{value | date:'shortDate'}}</span>
             </ng-template>

@@ -106,7 +106,8 @@ export class AboutComponent implements OnInit {
       this.status = false;
       this.cadastrado = true;
     }else{
-
+      this.status = true;
+      this.cadastrado = false;
     }
   }
 
