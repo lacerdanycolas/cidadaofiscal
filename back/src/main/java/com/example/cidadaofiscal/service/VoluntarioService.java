@@ -3,6 +3,8 @@ package com.example.cidadaofiscal.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.cidadaofiscal.beans.Voluntario;
@@ -15,8 +17,13 @@ public class VoluntarioService {
 	@Autowired
 	private VoluntarioRepository voluntarioRepository;
 	
+	
 	public List<Voluntario> findall(){
 		return voluntarioRepository.findAll();
+	}
+	
+	public Page<Voluntario> findAllByPage(Pageable pageable){
+		return voluntarioRepository.findAll(pageable);
 	}
 	
 	public Voluntario findOne(Long id) {

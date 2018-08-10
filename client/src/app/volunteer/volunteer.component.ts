@@ -10,7 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 export class VolunteerComponent implements OnInit {
   
   @ViewChild('myTable') table: any;
-
+  
   rowsVol = []
   columnsVol = [
     {
@@ -56,11 +56,19 @@ export class VolunteerComponent implements OnInit {
       },
     ];
   }
+
+  setPage(pageInfo){
+    // metodo que me indica qual pagina o usuario está
+    var pageNumber = pageInfo.offset;
+    //this.fetchVoluntarios(data, pageNumber);
+  }
+
   fetchVoluntarios(cb) {
     const req = new XMLHttpRequest();
-    req.open('GET', `http://localhost:8080/voluntario`);
+    req.open('GET', `http://localhost:8080/voluntario/all`);
 
     req.onload = () => {
+      debugger;
       cb(JSON.parse(req.response));
     };
 

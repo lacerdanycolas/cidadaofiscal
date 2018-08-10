@@ -106,9 +106,9 @@ export class DashboardComponent implements OnInit {
     config.keyboard = false; }
 
   ngOnInit() {
-    this.loadMemberSummary();
-    this.loadSupplierSummary();
-    this.loadYearExpensesSummary();
+    //this.loadMemberSummary();
+    //this.loadSupplierSummary();
+    //this.loadYearExpensesSummary();
 
     this.columnsDep = [
       {
