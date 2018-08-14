@@ -31,6 +31,11 @@ public class VoluntarioController {
 		return voluntarioService.save(voluntario);
 	}
 	
+	@GetMapping(path = "/total")
+	public Integer getAllVolunters() {
+		return voluntarioService.getAllVolunters();
+	}
+	
 	@GetMapping(path = "/all")
 	public List<Voluntario> findAll(){
 		return voluntarioService.findall();

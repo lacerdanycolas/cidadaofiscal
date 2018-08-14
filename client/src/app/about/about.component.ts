@@ -39,7 +39,6 @@ export class AboutComponent implements OnInit {
   }
 
   validateTelefone(){
-    debugger;
     var value = this.volunteer.telefone;
     var matches = value.match(/\d+/g);
     if(matches != null &&

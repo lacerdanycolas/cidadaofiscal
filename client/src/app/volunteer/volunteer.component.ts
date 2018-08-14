@@ -12,6 +12,8 @@ export class VolunteerComponent implements OnInit {
   @ViewChild('myTable') table: any;
   
   rowsVol = []
+  pageNumber = 0;
+  totalItens;
   columnsVol = [
     {
       prop: 'name',
@@ -34,7 +36,7 @@ export class VolunteerComponent implements OnInit {
   constructor() {
     this.fetchVoluntarios((data) => {
       this.rowsVol = data;
-    });
+    }, this.pageNumber);
   }
   ngOnInit() {
     this.columnsVol = [
@@ -57,18 +59,33 @@ export class VolunteerComponent implements OnInit {
     ];
   }
 
-  setPage(pageInfo){
+  /*setPage(pageInfo){
     // metodo que me indica qual pagina o usuario está
-    var pageNumber = pageInfo.offset;
+    this.pageNumber = pageInfo.offset;
+    this.totalItens = pageInfo.totalElements;
+    this.fetchVoluntarios((data) => {
+      this.rowsVol = data.content;
+    });
     //this.fetchVoluntarios(data, pageNumber);
+  }*/
+
+  getTotal(cb) {
+    const req = new XMLHttpRequest();
+    req.open('GET', `http://localhost:8080/voluntario/total`);
+
+    req.onload = () => {
+      cb(JSON.parse(req.response));
+    };
+
+    req.send();
   }
 
-  fetchVoluntarios(cb) {
+  fetchVoluntarios(cb, pageNumber) {
     const req = new XMLHttpRequest();
+    //req.open('GET', `http://localhost:8080/voluntario?page=${pageNumber}&size=5`);
     req.open('GET', `http://localhost:8080/voluntario/all`);
 
     req.onload = () => {
-      debugger;
       cb(JSON.parse(req.response));
     };
 

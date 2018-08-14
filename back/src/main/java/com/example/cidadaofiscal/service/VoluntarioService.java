@@ -17,6 +17,9 @@ public class VoluntarioService {
 	@Autowired
 	private VoluntarioRepository voluntarioRepository;
 	
+	public Integer getAllVolunters() {
+		return voluntarioRepository.getAllVolunters();
+	}
 	
 	public List<Voluntario> findall(){
 		return voluntarioRepository.findAll();

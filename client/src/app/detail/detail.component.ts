@@ -2,9 +2,6 @@ import { DetailService } from './../detail.service';
 import { Component, OnInit } from '@angular/core';
 import { DetailParameters } from './../detail-parameters';
 
-
-
-
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -40,6 +37,8 @@ export class DetailComponent implements OnInit {
     this.detailParameters.limit = 9999;
   }
 
+  status = false;
+
   ngOnInit() {
    this.detailParameters = {
       limit: 9999,
@@ -55,26 +54,49 @@ export class DetailComponent implements OnInit {
   }
 
   getPesquisa() {
-    document.getElementById("loadingDiv").style["display"] =  "block";
     this.fetchPesquisa((data) => {
       this.detailRows = data;
     });
   }
 
   fetchPesquisa(cb) {
-    this.url = this.composeUrl();
-    const req = new XMLHttpRequest();
-    req.open('GET', this.url);
-    req.onload = () => {
-      cb(JSON.parse(req.response));
-      document.getElementById("loadingDiv").style["display"] =  "none";
-    };
+    if(!this.validateFileds()){
+      document.getElementById("loadingDiv").style["display"] =  "block";
+      this.url = this.composeUrl();
+      const req = new XMLHttpRequest();
+      req.open('GET', this.url);
+      req.onload = () => {
+        cb(JSON.parse(req.response));
+        document.getElementById("loadingDiv").style["display"] =  "none";
+      };
 
-    req.send();
+      req.send();
+    }
+  }
+
+  validateFileds(){
+    debugger;
+    if((this.detailParameters.parlamentar_fantasia == "" || this.detailParameters.parlamentar_fantasia == null
+      || this.detailParameters.parlamentar_fantasia == undefined) && (this.detailParameters.parlamentar_partido =="" 
+      || this.detailParameters.parlamentar_partido == null || this.detailParameters.parlamentar_partido == undefined)
+      && (this.detailParameters.fornecedor_id == "" || this.detailParameters.fornecedor_id == null 
+      || this.detailParameters.fornecedor_id == undefined) && (this.detailParameters.fornecedor_nome == ""
+      || this.detailParameters.fornecedor_nome == null || this.detailParameters.fornecedor_nome == undefined)
+      && (this.detailParameters.despesa_valorDe == "" || this.detailParameters.despesa_valorDe == null
+      || this.detailParameters.despesa_valorDe == undefined) && (this.detailParameters.despesa_valorAte == ""
+      || this.detailParameters.despesa_valorAte == null || this.detailParameters.despesa_valorAte == undefined)
+      && (this.detailParameters.despesa_dataDe == "" || this.detailParameters.despesa_dataDe == null
+      || this.detailParameters.despesa_dataDe == undefined) && (this.detailParameters.despesa_dataAte == ""
+      || this.detailParameters.despesa_dataAte == null || this.detailParameters.despesa_dataAte == undefined)){
+        this.status= true;
+        return true;
+    }else{
+      this.status=false;
+      return false;
+    }
   }
 
   composeUrl(): string {
-    debugger;
     let url = 'http://localhost:8080/alepe/pesquisa';
     let paradd = false;
     if (this.detailParameters.parlamentar_fantasia != '' && this.detailParameters.parlamentar_fantasia != null
@@ -165,6 +187,8 @@ export class DetailComponent implements OnInit {
     despesa_dataDe: '',
     despesa_dataAte: ''
     }
+    this.status = false;
     this.detailParameters.limit = 9999;
+    document.getElementById("loadingDiv").style["display"] =  "none";
   }
 }

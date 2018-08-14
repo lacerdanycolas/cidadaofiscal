@@ -70,6 +70,9 @@ $( document ).ready(function() {
             <button class="btn btn-secondary" (click)="resetParameters()">Limpar</button>
             <button class="btn btn-primary" (click)="getPesquisa(); getLoading()">Pesquisar</button>
         </div>
+        <div 
+        *ngIf="status"><strong style="color: red">Preencha todos os campos corretamente</strong>
+        </div>
         <div id= "loadingDiv" style="display: none">
            <p class="progress-bar" style="background-color: #235982">Carregando...</p>
         </div>
